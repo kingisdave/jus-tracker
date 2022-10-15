@@ -11,11 +11,17 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-sequelize.sync().then(() => {
-  console.log(`DB started on port ${config.port}`)
-})
-
 require('./routes')(app)
+
+sequelize.sync()
+  .then(() => {
+    console.log(`DB started on port ${config.port}`)
+  })
+// (async () => {
+//   await sequelize.sync().then(() => {
+//     console.log(`DB started on port ${config.port}`)
+//   })
+// })()
 
 // app.listen(process.env.PORT || 8090)
 app.listen(config.port)

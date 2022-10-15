@@ -15,31 +15,31 @@ module.exports = {
       profilePic: Joi.string()
     })
 
-    // schema options 
+    // schema options
     const options = {
-      abortEarly: false,  //include all the errors
-      allowUnknown: true, //ignore unknown props
-      stripUnknown: true,  // remove unknown props
+      abortEarly: false, // include all the errors
+      allowUnknown: true, // ignore unknown props
+      stripUnknown: true // remove unknown props
     }
-    const { error, value } = userSchema.validate(req.body, options);
-    if (error){
+    const { error, value } = userSchema.validate(req.body, options)
+    if (error) {
       // on fail return comma seperated errors
       switch (error.details[0].context.key) {
         case 'firstName':
           res.status(400).send({
             error: 'Must be more than 2 characters in length and less than 12'
           })
-          break;
+          break
         case 'lastName':
           res.status(400).send({
             error: 'Must be more than 2 characters in length and less than 12'
           })
-          break;
+          break
         case 'email':
           res.status(400).send({
             error: 'You must provide a valid email address'
           })
-          break;
+          break
         case 'password':
           res.status(400).send({
             error: `The password provided fail to match the following rules
@@ -49,17 +49,16 @@ module.exports = {
               2. Must be at least 8 characters in length and not greater than 32 characters in length.  
             `
           })
-          break;
+          break
         default:
           res.status(400).send({
             error: 'Invalid registration information'
           })
-          break;
+          break
       }
     } else {
-      req.body = value;
-      next();
+      req.body = value
+      next()
     }
-
   }
 }
