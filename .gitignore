@@ -1,3 +1,24 @@
 client/node_modules/
 server/node_modules/
 server/.env
+client/dist
+
+
+# local env files
+client/.env.local
+client/.env.*.local
+
+# Log files
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+client/pnpm-debug.log*
+
+# Editor directories and files
+client/.idea
+client/.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
